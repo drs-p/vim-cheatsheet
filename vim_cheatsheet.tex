@@ -1,0 +1,678 @@
+\DocumentMetadata{
+    pdfstandard={A-3u},
+    lang={en-US},
+}
+
+\documentclass[a4paper, landscape, 10pt]{article}
+\frenchspacing
+\setlength{\parskip}{0pt}\raggedbottom
+\raggedright
+
+\PassOptionsToPackage{babel}{main=english, math=normal, showlanguages}
+
+\usepackage{iftex}
+
+\ifluatex
+    \pdfvariable omitcidset=1
+\fi
+
+\usepackage{babel}
+
+\usepackage{calc}
+\usepackage{geometry}
+\PassOptionsToPackage{textpos}{absolute}
+\usepackage{textpos}
+
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{svg}
+\PassOptionsToPackage{xcolor}{rgb,hyperref}
+\usepackage{xcolor}
+\ifluatex
+    \usepackage{luacolor}
+\fi
+
+\usepackage{alltt}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{caption}
+\usepackage{enumitem}\setlist{nosep}
+% \usepackage{enumerate}
+% \usepackage{paralist}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{footmisc}
+\usepackage{framed}
+\usepackage{multicol}
+\ifluatex
+    \usepackage{realscripts}
+\fi
+\usepackage[eqno]{tabfigures}
+\usepackage{tabularx}
+\usepackage{titlesec}
+\usepackage{tocloft}
+
+\usepackage[tbtags]{mathtools}
+\usepackage{amsthm}
+
+\usepackage{embedfile}
+\embedfile[
+    filespec = {\jobname.tex},
+    mimetype = {application/x-latex},
+    afrelationship = Source,
+    desc = {The source code for this document, to be compiled using lualatex(1).},
+]{\jobname.tex}
+
+\usepackage{unicode-math}
+\defaultfontfeatures{Renderer = OpenType}
+\usepackage{microtype}
+
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+
+\newlength{\gutter}
+\setlength{\gutter}{2.7cm}
+\newlength{\shift}
+\setlength{\shift}{.0cm}
+\newlength{\mycolsep}
+\setlength{\mycolsep}{.65cm}
+\newlength{\lmargin}
+\setlength{\lmargin}{.5\gutter - \mycolsep + \shift}
+\newlength{\rmargin}
+\setlength{\rmargin}{.5\gutter - \mycolsep - \shift}
+\geometry{lmargin=\lmargin, rmargin=\rmargin, vmargin=1cm}
+
+\definecolor{solarizedbase03}{HTML}{002b36}
+\definecolor{solarizedbase02}{HTML}{073642}
+\definecolor{solarizedbase01}{HTML}{586e75}
+\definecolor{solarizedbase00}{HTML}{657b83}
+\definecolor{solarizedbase0}{HTML}{839496}
+\definecolor{solarizedbase1}{HTML}{93a1a1}
+\definecolor{solarizedbase2}{HTML}{eee8d5}
+\definecolor{solarizedbase3}{HTML}{fdf6e3}
+\definecolor{solarizedyellow}{HTML}{b58900}
+\definecolor{solarizedorange}{HTML}{cb4b16}
+\definecolor{solarizedred}{HTML}{dc322f}
+\definecolor{solarizedmagenta}{HTML}{d33682}
+\definecolor{solarizedviolet}{HTML}{6c71c4}
+\definecolor{solarizedblue}{HTML}{268bd2}
+\definecolor{solarizedcyan}{HTML}{2aa198}
+\definecolor{solarizedgreen}{HTML}{859900}
+
+\babelfont{rm}[
+    Numbers = {Lowercase, Proportional},
+    Scale = .8,
+    Path = /home/e4071/meuk/SanDisk128GB/FONTS/Noto/,
+    Extension = .ttf,
+    UprightFont = *VF,
+    ItalicFont = *VF-Italic,
+    BoldFont = *VF,
+    BoldItalicFont = *VF-Italic,
+    RawFeature = {axis={wght=400}},
+    BoldFeatures = {RawFeature = {axis={wght=900}}},
+    BoldItalicFeatures = {RawFeature = {axis={wght=900}}},
+    FontFace = {ub}{n}{Font = *VF, RawFeature = {axis={wght=900}}},
+    FontFace = {ub}{it}{Font = *VF-Italic, RawFeature = {axis={wght=900}}},
+]{NotoSans}
+
+\babelfont{tt}[
+    Colour = solarizedbase01,
+    Numbers = {Uppercase, Tabular},
+    Scale = MatchLowercase,
+    Path = /home/e4071/meuk/SanDisk128GB/FONTS/Noto/,
+    Extension = .ttf,
+    UprightFont = *VF,
+    BoldFont = *VF,
+    RawFeature = {axis={wght=400,wdth=93.75}},
+    BoldFeatures = {RawFeature = {axis={wght=700,wdth=93.75}}},
+]{NotoSansMono}
+
+% \babelfont{tt}[
+%     Path = /home/e4071/meuk/SanDisk128GB/FONTS/monospaced fonts/Inconsolata/,
+%     UprightFeatures = {RawFeature = {axis={wght=400,width=100}}},
+%     Colour = solarizedbase01,
+%     Numbers = {Lowercase, Proportional},
+%     Scale = MatchLowercase,
+%     % StylisticSet = 3,
+% ]{InconsolataVF.ttf}
+
+\titleformat{\section}{\fontsize{14pt}{12pt}\fontseries{ub}\selectfont\color{accentcolor}}{}{0pt}{}
+\titleformat{\subsection}{\fontsize{12pt}{12pt}\fontseries{b}\selectfont\itshape\color{accentcolor}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{15pt}{5pt}
+\titlespacing*{\subsection}{0pt}{10pt}{5pt}
+
+\setlength{\columnsep}{\mycolsep}
+
+% \usepackage[absolute]{textpos}
+% \AddToHook{shipout/before}{
+%     % \begin{textblock*}{0pt}(.333\paperwidth + .167\gutter - .5\mycolsep, 0pt)
+%     \begin{textblock*}{0pt}(.333\paperwidth, 0pt)
+%     \color{solarizedbase1}\rule{.2pt}{\paperheight}
+%     \end{textblock*}
+%     % \begin{textblock*}{0pt}(.667\paperwidth - .167\gutter + .5\mycolsep, 0pt)
+%     \begin{textblock*}{0pt}(.667\paperwidth, 0pt)
+%     \color{solarizedbase1}\rule{.2pt}{\paperheight}
+%     \end{textblock*}
+%     \normalcolor
+% }
+
+\definecolor{shadecolor}{named}{solarizedbase3}
+
+\pagestyle{empty}\thispagestyle{empty}
+
+\newcommand{\V}[1]{\texttt{\textup{#1}}}
+
+\newcommand{\topic}[1]{\section*{\protect\makebox(0,0)[l]{\color{accentcolor!80}\rule[8pt]{\columnwidth}{19pt}}\hspace{.5em}\color{white}#1}}
+% \newcommand{\topic}[1]{\section*{\protect\makebox(0,0)[l]{\color{accentcolor!20}\rule[9pt]{\columnwidth}{19pt}}\hspace{.5em}#1}}
+\newcommand{\subtopic}[1]{\subsection*{\protect\makebox(0,0)[l]{\color{accentcolor!20}\rule[7pt]{\columnwidth}{19pt}}\hspace{.5em}#1}}
+% \newcommand{\subtopic}[1]{\subsection*{\protect\makebox(0,0)[l]{\color{accentcolor!10}\rule[7pt]{\columnwidth}{15pt}}\hspace{.5em}#1}}
+
+\hypersetup{%
+    pdftitle={Vim quick reference},
+    pdfauthor={drs-p},
+    pdfdate={2023-09-19},
+    pdfkeywords={vim},
+    pdfsubject={A quick reference for Vim},
+    pdfcopyright={\copyright\ 2020–2023 drs-p. Released under the terms of the CC-BY-SA 4.0 license.},
+}
+
+\title{\GetDocumentProperties{hyperref/pdftitle}}
+\author{\GetDocumentProperties{hyperref/pdfauthor}}
+\date{\GetDocumentProperties{hyperref/pdfdate}}
+
+
+\begin{document}
+\begin{multicols*}{3}
+    {
+        {
+            \fontseries{ub}\selectfont
+            \definecolor{shadecolor}{HTML}{ffffff}%
+            \hspace{.02\columnwidth}%
+            \resizebox{.94\columnwidth}{!}{%
+                \textcolor{solarizedbase01}%
+                {\GetDocumentProperties{hyperref/pdftitle}}}
+        }
+%
+        \color{solarizedbase00}\noindent
+        \makebox[.955\columnwidth]
+            {\mdseries\footnotesize\quad \emph{by} drs-p\hfill\emph{version} \GetDocumentProperties{hyperref/pdfdate}}
+        \vspace*{-.2\baselineskip}
+    }
+
+
+
+\definecolor{accentcolor}{named}{solarizedgreen}
+    \topic{Moving around}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{gg}, \V{G}
+        &Go to top/end of file (with prefix \textit{n:} go to line \textit{n})\\
+\verb|^e|, \verb|^d|, \verb|^f|
+        &Scroll down one line/half a screen/full screen\\
+\verb|^y|, \verb|^u|, \verb|^b|
+        &Scroll up one line/half a screen/full screen\\
+\V{H}, \V{M}, \V{L}
+        &Go to top/middle/bottom of screen\\
+\V{zt}, \V{z<Enter>}
+        &Scroll current line to top of screen\\
+\V{zz}, \V{z.}
+        &Scroll current line to center of screen\\
+\V{zb}, \V{z-}
+        &Scroll current line to bottom of screen\\
+        &(prefix \textit{n:} scroll line \textit{n} to top/center/bottom)\\
+\verb|^o|, \verb|^i|
+        &Go to location of last/next change or jump
+    \end{tabularx}
+
+\subtopic{Marks}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{mx}
+        &Set mark \V{x} (\V{a} – \V{z} per buffer, \V{A} – \V{Z} across buffers)\\
+\V{:marks}
+        &List all current marks\\
+\V{'x}
+        &Jump to (begin of line containing) mark \V{x}\\
+\V{`x}
+        &Jump to exact location of mark \V{x}\\
+\V{''}
+        &Jump back to start of last jump
+    \end{tabularx}
+
+
+
+\definecolor{accentcolor}{named}{solarizedcyan}
+\topic{Insert mode}
+An optional prefixed count indicates how many characters or lines to insert or replace.
+\vspace{.25\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{i}, \V{a}
+        &Insert at/after cursor position\\
+\V{gI}, \V{I}, \V{A}
+        &Insert at start/begin/end of line\\
+\V{o}, \V{O}
+        &Insert new line after/before current line\\
+\V{s}
+        &Delete char(s) and start Insert mode\\
+\V{C}
+        &Delete rest of line, start Insert mode\\
+\V{S}
+        &Delete entire line, start Insert mode\\
+\V{<esc>}, \verb|^[|
+        &Return to Normal mode
+    \end{tabularx}
+
+\subtopic{Insert mode commands}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\verb|^d|, \verb|^t|
+        &Shift left/right (by shiftwidth)\\
+\verb|^k xy|
+        &Insert accented characters (\V{:digraphs} for full list)
+
+        \verb|a`| = à, \verb|a'| = á, \verb|a:| = ä, \verb|c,| = ç, \verb|n~| = ñ, \verb|ss| = ß, \V{>{}>} = »\\
+\verb|^v k|
+        &Key \textit{k} (e.g., <Esc>, <Enter>) is included verbatim.\linebreak
+        If \textit{k} = \V{o777}, \V{999}, \V{xFF}, \V{uFFFF}, \V{UFFFFFFFF}: Unicode char\\
+\verb|^o|
+        &Execute single command, then return to Insert mode\\
+\verb|^r r|
+        &Insert contents of register \verb|r| (see \emph{Registers})\\
+\verb|^a|, \verb|^@|
+        &Repeat previous insert (\verb|^@| terminates Insert mode)
+    \end{tabularx}
+
+
+
+\definecolor{accentcolor}{named}{solarizedblue}
+\topic{Text editing}
+General editing actions are of the form:
+
+{
+    \vspace*{.5\baselineskip}
+    \ttfamily\qquad [register] operator [count] operand
+    \vspace*{.5\baselineskip}
+}
+
+``Operand'' may be a motion, text object, visual selection, search or mark.
+As a shortcut, operators can be doubled to work on full lines:
+\V{cc}, \V{dd}, \V{yy}, \V{<{}<}, \V{>{}>}, \V{==}, \V{guu}, \V{gUU}, \verb|g~~| etc.
+Naming a specific register with operators \verb|d|, \verb|y|, \verb|p| yanks to or pastes from that register.
+
+\subtopic{Operators}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{d}
+        &Delete text\\
+\V{y}
+        &Copy (``yank'') text\\
+\V{c}
+        &Change text\\
+\verb|g~|
+        &Swap case\\
+\V{gu}, \V{gU}
+        &Make lower/uppercase\\
+\V{<}, \V{>}, \V{=}
+        &Shift left/right (by \V{shiftwidth}), autoindent\\
+\V{gq}, \V{gw}
+        &Format text; \V{gq} uses \V{formatexpr}/\V{formatprg}
+    \end{tabularx}
+
+\subtopic{Motions}
+Motions move the cursor when used without operator.
+\vspace{.25\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{h}, \V{j}, \V{k}, \V{l}
+        &Left, down, up, right (\V{gj}, \V{gk} move by \emph{screen} line)\\
+\verb|0|, \verb|^|, \verb|$|
+        &Go to start/begin/end of line\\
+        &(``begin'' is first non-space character of line)\\
+\V{w}, \V{W}
+        &Go to next word/WORD (``WORDS'' delimited only by whitespace; ``words'' also by punctuation)\\
+\V{b}, \V{B}
+        &Go to previous word/WORD\\
+\V{e}, \V{ge}, \V{E}, \V{gE}
+        &Go to end of next/previous word/WORD\\
+\V{\%}
+        &Go to matching parenthesis/brace\\
+\verb|(|, \verb|)|
+        &Go to beginning of current/next sentence\\
+\V{\{}, \V{\}}
+        &Go to beginning of current/next paragraph
+    \end{tabularx}
+
+\subtopic{Text objects}
+These \V{a}~commands include surrounding whitespace; alternative \V{i}~forms don't. As a general rule, use \V{a}~forms with delete,\\\V{i}~forms with copy and change (mnemonic: \emph{around} versus \emph{inside}).
+\vspace{.25\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{aw}, \V{aW}, \V{as}, \V{ap}
+        &Word, WORD, sentence, paragraph\\
+\V{a)}, \V{a]}, \V{a\}}, \V{a>}
+        &Block in \V{()}, \V{[]}, \V{\{\}}, \V{<>} (\V{ab}, \V{aB} same as \V{a)}, \V{a\}})\\
+\V{a"}, \V{a'}, \V{a`}, \V{at}
+        &Various strings; HTML/XML tag
+    \end{tabularx}
+
+\subtopic{Visual mode}
+Use motions, search, text objects or marks to select text.
+\vspace{.25\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\verb|v|, \verb|V|, \verb|^v|
+        &Select characters/lines/block
+    \end{tabularx}
+
+\subtopic{Search and replace}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{fx}, \V{tx}, \V{Fx}, \V{Tx}
+        &Find/move to next/previous \V{x} on current line\\
+\V{;} \V{,}
+        &Repeat find in same/oposite direction\\
+\V{/pat}, \V{?pat}
+        &Search next/prev occurrence of pattern\\
+\V{*}, \verb|#|
+        &Search next/prev occurrence of current word\\
+\V{n}, \V{N}
+        &Repeat search in same/opposite direction\\
+\V{:s/old/new/}
+        &Change first \V{old} on current line to \V{new}
+        \linebreak Flags: \V{g} = change all; \V{c} = confirm;
+        \linebreak \V{e} = no error if \V{old} not found
+        \\
+\V{:\%s/old/new/g}
+        &Change all \V{old} in current buffer to \V{new}
+    \end{tabularx}
+
+\subtopic{Miscellaneous other editing commands}
+These command may also be prefixed with a count.
+\vspace{.25\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{C}, \V{D}
+        &Change/delete rest of current line (same as \verb|c$|, \verb|d$|)\\
+\V{S}, \V{Y}
+        &Substitute (change)/yank \emph{entire} current line\\
+\V{p}, \V{P}
+        &Paste yanked text after/before cursor\\
+\V{]p}, \V{[P}
+        &Same as \V{p}/\V{P}, but match current indentation\\
+\V{x}, \V{X}
+        &Delete character under/before cursor\\
+\V{rx}
+        &Replace character under cursor with \V{x}\\
+\V{R}
+        &Replace mode (overwrite existing text until \V{<Esc>})\\
+\verb|~|
+        &Change case of character under cursor\\
+\V{J}, \V{gJ}
+        &Join current and next lines, with/without space\\
+\verb|^a|, \verb|^x|
+        &Increment/decrement number under cursor
+    \end{tabularx}
+
+\subtopic{Repeat and undo}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\verb|.|
+        &Repeat last command\\
+\verb|u|
+        &Undo last operation\\
+\verb|^r|
+        &Redo ``undone'' operation\\
+\verb|U|
+        &Undo all edits on current line (when cursor still on line)
+    \end{tabularx}
+
+
+
+\definecolor{accentcolor}{named}{solarizedviolet}
+\topic{Registers and macros}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{""}
+        &``Unnamed'' (default) register\\
+\V{"a} – \V{"z}
+        &Registers; use with \V{d}, \V{y}, \V{p} (\V{"A} – \V{"Z} \emph{append} to \V{a} – \V{z})\\
+\V{"0}
+        &Contains last yanked text\\
+\V{"1} – \V{"9}
+        &Stack containing ``big'' deletes (one or more lines)\\
+\V{"-}
+        &Last ``small'' delete (only part of line)\\
+\V{"+}
+        &System clipboard (if supported; check \V{:version})\\
+
+\V{qr}, \V{qR}
+        &Record operations into register \V{r} (\V{qR}: \emph{append} to \V{r})\\
+\V{q}
+        &Quit recording\\
+\V{@r}
+        &Replay operations from register \V{r}\\
+\V{@@}
+        &Repeat last \V{@r} (with optional prefixed repeat count)\\
+\V{:reg}
+        &Show all current registers
+    \end{tabularx}
+
+
+
+    \pagebreak
+
+
+
+\definecolor{accentcolor}{named}{solarizedmagenta}
+\topic{Editor commands}
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\V{:h subject}
+        &Show help text on \emph{subject}\\
+\V{:w}, \V{:saveas}
+        &Save file; takes optional filename\\
+\V{:w >{}> filename}
+        &Append text to file\\
+\V{:q}
+        &Quit editor\\
+\V{:wq}, \V{:x}, \V{ZZ}
+        &Save file and quit editor\\
+\V{:q!}, \V{ZQ}
+        &Quit editor without saving changes\\
+\V{:e filename}
+        &Edit another file (in current buffer)\\
+\V{:n}, \V{:N}, \V{:prev}
+        &Edit next/previous file in arg list\\
+\V{:wn}, \V{:wN}, \V{:wprev}
+        &Save file and edit next/prev in arg list\\
+\V{:! command}
+        &Execute shell command\\
+\V{:r file}
+        &Insert file contents after current line\\
+\V{:r !command}
+        &Insert command output after current line\\
+\V{:0r file/!cmd}
+        &Insert file or command at start of buffer\\
+\verb|:$r file/!cmd|
+        &Insert file or command at end of buffer\\
+
+\verb|^r^w|
+        &Copy word under cursor to command\\
+\verb|^f|
+        &Edit command line in normal mode\\
+\verb|^d|
+        &Completion suggestions
+    \end{tabularx}
+
+\subtopic{Windows and tabs}
+In all commands below, \verb|^w x| may also be typed as \verb|^w^x|.
+\vspace{.25\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
+\verb|:split|, \verb|^w s|
+        &Split window horizontally\\
+\verb|:vsplit|, \verb|^w v|
+        &Split window vertically\\
+        &(\verb|:split|, \verb|:vsplit| take optional filename)\\
+\verb|:new|, \verb|^w n|
+        &Split horizontally; new buffer is empty\\
+\verb|:vnew|
+        &Split vertically; new buffer is empty\\
+\verb|^w hjkl|
+        &Move to window left/below/above/right \linebreak(with \textit{tmux-navigator.vim:} also \verb|^hjkl|)\\
+\verb|^w w|
+        &Cycle through open windows\\
+\verb|^w HJKL|
+        &Move window left/down/up/right\\
+\verb|^w rR|
+        &Rotate windows clockwise/countercw.\\
+\verb|^w +-<>|
+        &Increase/decrease window height/width\\
+\verb|^w =|
+        &Resize windows to equal size\\
+\verb|^w q|, \verb|:close|
+        &Quit window (\verb|:close| fails if only buffer)\\
+\verb|:only|, \verb|^w o|
+        &Close all other windows\\
+
+\verb|:term [cmd]|
+        &Open terminal and run \verb|cmd| (default: shell)\\
+\verb|^\ n|
+        &Switch to Terminal-Normal mode\\
+
+\verb|:tabnew|
+        &Open new tab; takes optional filename\\
+\verb|^w T|
+        &Move current window to new tab\\
+\verb|:tabclose|
+        &Close current tab\\
+\verb|:tabonly|
+        &Close all other tabs\\
+\verb|^<PageDown>|, \verb|gt|
+        &Move to next tab\\
+\verb|^<PageUp>|, \verb|gT|
+        &Move to previous tab
+    \end{tabularx}
+
+
+
+\definecolor{accentcolor}{named}{solarizedred}
+\topic{From my \textit{.vimrc}}
+\begin{verbatim}
+ set nocompatible    " allow non-vi-compatible stuff
+ set encoding=utf-8
+ set fileformat=unix
+ filetype plugin on
+ syntax enable
+ set autoindent      " copy indent from prev line
+ filetype indent on  " auto-indent based on filetype
+ set tabstop=4       " for showing existing tabs
+ set softtabstop=4   " used when editing
+ set expandtab       " expand tabs to spaces ...
+ au BufRead,BufFilePre,BufNewFile Makefile* \
+   set noexpandtab   " ... except in Makefiles
+ set shiftwidth=4    " used when shifting text
+ set shiftround      " shift to multiple of sw
+ set smarttab        " auto-indent by sw
+ set number          " show line numbers
+ set laststatus=2    " show status line
+ set showmatch       " show matching quote/paren
+ set incsearch       " show matches while typing
+ set hlsearch        " highlight all matches
+ set virtualedit=block  " select beyond EOL
+ set splitbelow      " open new windows below ...
+ set splitright      " ... or to the right
+
+ fun! RemoveTrailingWhitespace()
+     let l:save = winsaveview()
+     keeppatterns %s/\s\+$//e
+     call winrestview(l:save)
+ endfun
+ au BufWritePre * :call RemoveTrailingWhitespace()
+
+set ttimeoutlen=10          " fix timeout after Esc
+tnoremap <Esc> <C-\><C-n>   " Terminal-Normal mode
+
+ " Use 24-bit colours and true italics
+ if exists('+termguicolors')
+     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+     set termguicolors
+ endif
+ highlight Comment cterm=italic
+\end{verbatim}
+
+\columnbreak
+
+
+
+\definecolor{accentcolor}{named}{solarizedyellow}
+\topic{My favorite plugins}
+Plugins go in subdirs of \verb|$HOME/.vim/pack/packages/start/|; run~\V{:helptags ALL} to generate help texts.
+\vspace{.5\baselineskip}
+
+    \begin{tabularx}{\columnwidth}{>{\itshape}l>{\raggedright\arraybackslash}X}
+autopairs.vim           &Add/delete quotes, parens in pairs\\
+commentary.vim          &\V{gc} operator to (un)comment stuff\\
+lightline.vim           &Configurable statusline\\
+gitbranch.vim           &Show branchname in status line\\
+python-pep8-indent.vim  &Fix auto-indentation for Python\\
+tmux-navigator.vim      &Switch between vim and tmux\\
+nord.vim                &My favourite dark color scheme
+    \end{tabularx}
+
+\subtopic{\textit{surround.vim}}
+    \begin{tabularx}{\columnwidth}{ll>{\raggedright\arraybackslash}X}
+\V{ys arg1 arg2}
+        &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Quote or parenthesize something. \linebreak\V{arg1} is a motion, text object etc., \V{arg2}~chooses quotes/parens: \makebox[0pt][l]{\V{"} \V{]} \V{)} \V{\}} \V{>} \V{<}} \linebreak Args \V{[} \V{(} \V{\{} add space inside parens.}\\
+&\V{ysM>}
+        &wraps \V{M} in \V{<} and \V{>}\\
+&\V{ysM<}
+        &wraps \V{M} in \V{<...>} and \V{</...>} tags (prompts for tag name); same as \V{t}\\
+&\V{ysMf}
+        &wraps \V{M} in parentheses and prepends function call (prompts for name); \V{F}~adds~extra space inside parentheses\\
+&\V{ysM\textbackslash}
+        &wraps \V{M} in LaTeX \V{\textbackslash begin}-\V{\textbackslash end} block (prompts for environment name)\\
+&\V{ysM*}
+        &wraps \V{M} in \V{*} (like \V{*M*}); also \verb+_+, \verb+|+, \verb+#+ etc.\\
+\V{S arg2}
+        &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Use in Visual mode; \texttt{arg1} is implicit}\\
+\V{cs old new}
+        &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Change surrouding quotes or parens:}\\
+&\V{cs'"}
+        &changes single to double quotes\\
+&\V{cs)\}}
+        &changes parentheses to curly braces\\
+&\V{cs)(}
+        &adds space inside parentheses\\
+\V{ds arg}
+        &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Delete surrounding quotes, parens}
+    \end{tabularx}
+
+
+\subtopic{\textit{fugitive.vim}}
+    \begin{tabularx}{\columnwidth}{ll>{\raggedright\arraybackslash}X}
+\V{:G}
+        &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Show Git status. Key maps (see also \V{g?}):}\\
+&\V{gu}, \V{gU}, \V{gs}
+        &to (\textit{n}th) untracked/unstaged/staged file\\
+&\V{<}, \V{>}, \V{=}
+        &show/hide/toggle in-line diff\\
+&\V{(}, \V{)}
+        &to previous/next file or chunk\\
+&\V{s}, \V{u}
+        &stage/unstage current file or chunk\\
+&\V{cc}
+        &commit\\
+&\V{ca}, \V{ce}, \V{cw}
+        &amend/-\strut-no-edit/reword last commit\\
+&\V{gq}
+        &quit status buffer\\
+\V{:G cmd}
+        &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Run \texttt{git cmd}}
+    \end{tabularx}
+
+
+
+    {
+        \color{solarizedbase00}\vfill\hrule\par%
+        % {\noindent\rule{0pt}{8pt}\footnotesize\hfill Copyright 2020–2023 drs-p (\url{https://github.com/drs-p}), {\addfontfeature{Letters = UppercaseSmallCaps} CC-BY-SA 4.0}\hbox{}}\par
+        {\noindent\rule{0pt}{8pt}\footnotesize © 2020-2023 \href{https://github.com/drs-p/}{drs-p}\hfill released under the terms of the \href{https://creativecommons.org/licenses/by-sa/4.0/}{{\addfontfeature{Letters = UppercaseSmallCaps}CC-BY-SA 4.0}} license}\par
+    }
+
+\end{multicols*}
+\end{document}
