@@ -167,11 +167,11 @@
 
 \hypersetup{%
     pdftitle={Vim quick reference},
-    pdfauthor={drs-p},
-    pdfdate={2023-09-19},
+    pdfauthor={Marc Penninga},
+    pdfdate={2024-06-05},
     pdfkeywords={vim},
     pdfsubject={A quick reference for Vim},
-    pdfcopyright={\copyright\ 2020–2023 drs-p. Released under the terms of the CC-BY-SA 4.0 license.},
+    pdfcopyright={\copyright\ 2020–2024 Marc Penninga. Released under the terms of the CC-BY-SA 4.0 license, see https://creativecommons.org/licenses/by-sa/4.0/.},
 }
 
 \title{\GetDocumentProperties{hyperref/pdftitle}}
@@ -193,7 +193,7 @@
 %
         \color{solarizedbase00}\noindent
         \makebox[.955\columnwidth]
-            {\mdseries\footnotesize\quad \emph{by} drs-p\hfill\emph{version} \GetDocumentProperties{hyperref/pdfdate}}
+            {\mdseries\footnotesize\quad \emph{by} Marc Penninga\hfill\emph{version} \GetDocumentProperties{hyperref/pdfdate}}
         \vspace*{-.2\baselineskip}
     }
 
@@ -264,7 +264,7 @@ An optional prefixed count indicates how many characters or lines to insert or r
 \verb|^d|, \verb|^t|
         &Shift left/right (by shiftwidth)\\
 \verb|^k xy|
-        &Insert accented characters (\V{:digraphs} for full list)
+        &Insert accented characters (see \V{:digraphs} for full list)
 
         \verb|a`| = à, \verb|a'| = á, \verb|a:| = ä, \verb|c,| = ç, \verb|n~| = ñ, \verb|ss| = ß, \V{>{}>} = »\\
 \verb|^v k|
@@ -503,8 +503,7 @@ In all commands below, \verb|^w x| may also be typed as \verb|^w^x|.
 \verb|:split|, \verb|^w s|
         &Split window horizontally\\
 \verb|:vsplit|, \verb|^w v|
-        &Split window vertically\\
-        &(\verb|:split|, \verb|:vsplit| take optional filename)\\
+        &Split window vertically (\verb|:split| and \verb|:vsplit| optionally take filename or \verb|+command|, e.g. \verb|split +term|)\\
 \verb|:new|, \verb|^w n|
         &Split horizontally; new buffer is empty\\
 \verb|:vnew|
@@ -667,8 +666,7 @@ nord.vim                &My favourite dark color scheme
 
     {
         \color{solarizedbase00}\vfill\hrule\par%
-        % {\noindent\rule{0pt}{8pt}\footnotesize\hfill Copyright 2020–2023 drs-p (\url{https://github.com/drs-p}), {\addfontfeature{Letters = UppercaseSmallCaps} CC-BY-SA 4.0}\hbox{}}\par
-        {\noindent\rule{0pt}{8pt}\footnotesize © 2020-2023 \href{https://github.com/drs-p/}{drs-p}\hfill released under the terms of the \href{https://creativecommons.org/licenses/by-sa/4.0/}{{\addfontfeature{Letters = UppercaseSmallCaps}CC-BY-SA 4.0}} license}\par
+        {\noindent\rule{0pt}{8pt}\footnotesize © 2020-2024 \href{https://github.com/drs-p/}{Marc Penninga}\hfill License: \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0}}\par
     }
 
 \end{multicols*}
