@@ -1,6 +1,15 @@
 \DocumentMetadata{
-    pdfstandard={A-3u},
-    lang={en-US},
+    lang        = {en-US},
+    pdfversion  = 2.0,
+    pdfstandard = ua-2,
+    pdfstandard = a-4f,
+    testphase   = {
+        phase-III,
+        title,
+        table,
+        % math,
+        firstaid
+    }
 }
 
 \documentclass[a4paper, landscape, 10pt]{article}
@@ -20,48 +29,40 @@
 
 \usepackage{calc}
 \usepackage{geometry}
-\PassOptionsToPackage{textpos}{absolute}
-\usepackage{textpos}
+% \PassOptionsToPackage{textpos}{absolute}
+% \usepackage{textpos}
 
 \usepackage{graphicx}
-\usepackage{pdfpages}
-\usepackage{svg}
+% \usepackage{pdfpages}
+% \usepackage{svg}
 \PassOptionsToPackage{xcolor}{rgb,hyperref}
 \usepackage{xcolor}
-\ifluatex
-    \usepackage{luacolor}
-\fi
+% \ifluatex
+%     \usepackage{luacolor}
+% \fi
 
-\usepackage{alltt}
-\usepackage{array}
-\usepackage{booktabs}
-\usepackage{caption}
-\usepackage{enumitem}\setlist{nosep}
+% \usepackage{alltt}
+% \usepackage{array}
+% \usepackage{booktabs}
+% \usepackage{caption}
+% \usepackage{enumitem}\setlist{nosep}
 % \usepackage{enumerate}
 % \usepackage{paralist}
-\usepackage{fancyhdr}
-\usepackage{float}
-\usepackage{footmisc}
-\usepackage{framed}
+% \usepackage{fancyhdr}
+% \usepackage{float}
+% \usepackage{footmisc}
+% \usepackage{framed}
 \usepackage{multicol}
 \ifluatex
     \usepackage{realscripts}
 \fi
-\usepackage[eqno]{tabfigures}
+\usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
 \usepackage{tabularx}
-\usepackage{titlesec}
-\usepackage{tocloft}
+% \usepackage{titlesec}
+% \usepackage{tocloft}
 
 \usepackage[tbtags]{mathtools}
 \usepackage{amsthm}
-
-\usepackage{embedfile}
-\embedfile[
-    filespec = {\jobname.tex},
-    mimetype = {application/x-latex},
-    afrelationship = Source,
-    desc = {The source code for this document, to be compiled using lualatex(1).},
-]{\jobname.tex}
 
 \usepackage{unicode-math}
 \defaultfontfeatures{Renderer = OpenType}
@@ -101,61 +102,57 @@
 \definecolor{solarizedgreen}{HTML}{859900}
 
 \babelfont{rm}[
-    Numbers = {Lowercase, Proportional},
-    Scale = .8,
-    Path = /home/e4071/meuk/SanDisk128GB/FONTS/Noto/,
+    Numbers = {Uppercase, Proportional},
+    Scale = 0.9,
+    ScaleAgain = 1.0,
+    Path = /home/marc/Downloads/FONTS/Adobe Source/variable/,
     Extension = .ttf,
     UprightFont = *VF,
+    UprightFeatures = { RawFeature = {axis={wght=400}} },
     ItalicFont = *VF-Italic,
+    ItalicFeatures = { RawFeature = {axis={wght=400}} },
     BoldFont = *VF,
+    BoldFeatures = { RawFeature = {axis={wght=700}} },
     BoldItalicFont = *VF-Italic,
-    RawFeature = {axis={wght=400}},
-    BoldFeatures = {RawFeature = {axis={wght=900}}},
-    BoldItalicFeatures = {RawFeature = {axis={wght=900}}},
+    BoldItalicFeatures = { RawFeature = {axis={wght=700}} },
     FontFace = {ub}{n}{Font = *VF, RawFeature = {axis={wght=900}}},
     FontFace = {ub}{it}{Font = *VF-Italic, RawFeature = {axis={wght=900}}},
-]{NotoSans}
+]{SourceSans3}
 
 \babelfont{tt}[
-    Colour = solarizedbase01,
-    Numbers = {Uppercase, Tabular},
-    Scale = MatchLowercase,
-    Path = /home/e4071/meuk/SanDisk128GB/FONTS/Noto/,
+    Scale = MatchUppercase,
+    ScaleAgain = 1.0,
+    Path = /home/marc/Downloads/FONTS/JetBrains Mono/variable/,
     Extension = .ttf,
     UprightFont = *VF,
+    UprightFeatures = { RawFeature = {axis={wght=400}} },
+    ItalicFont = *VF-Italic,
+    ItalicFeatures = { RawFeature = {axis={wght=400}} },
     BoldFont = *VF,
-    RawFeature = {axis={wght=400,wdth=93.75}},
-    BoldFeatures = {RawFeature = {axis={wght=700,wdth=93.75}}},
-]{NotoSansMono}
+    BoldFeatures = { RawFeature = {axis={wght=700}} },
+    BoldItalicFont = *VF-Italic,
+    BoldItalicFeatures = { RawFeature = {axis={wght=700}} },
+    Colour = solarizedbase01,
+]{JetBrainsMono}
 
-% \babelfont{tt}[
-%     Path = /home/e4071/meuk/SanDisk128GB/FONTS/monospaced fonts/Inconsolata/,
-%     UprightFeatures = {RawFeature = {axis={wght=400,width=100}}},
-%     Colour = solarizedbase01,
-%     Numbers = {Lowercase, Proportional},
-%     Scale = MatchLowercase,
-%     % StylisticSet = 3,
-% ]{InconsolataVF.ttf}
-
-\titleformat{\section}{\fontsize{14pt}{12pt}\fontseries{ub}\selectfont\color{accentcolor}}{}{0pt}{}
-\titleformat{\subsection}{\fontsize{12pt}{12pt}\fontseries{b}\selectfont\itshape\color{accentcolor}}{}{0pt}{}
-\titlespacing*{\section}{0pt}{15pt}{5pt}
-\titlespacing*{\subsection}{0pt}{10pt}{5pt}
+\makeatletter
+\renewcommand{\section}{%
+    \@startsection{section}%
+        {1}%
+        {0pt}%
+        {-15pt}%
+        {5pt}%
+        {\fontsize{14pt}{12pt}\fontseries{ub}\selectfont\color{accentcolor}}}
+\renewcommand{\subsection}{%
+    \@startsection{subsection}%
+        {2}%
+        {0pt}%
+        {-10pt}%
+        {5pt}%
+        {\fontsize{12pt}{12pt}\selectfont\bfseries\itshape\color{accentcolor}}}
+\makeatother
 
 \setlength{\columnsep}{\mycolsep}
-
-% \usepackage[absolute]{textpos}
-% \AddToHook{shipout/before}{
-%     % \begin{textblock*}{0pt}(.333\paperwidth + .167\gutter - .5\mycolsep, 0pt)
-%     \begin{textblock*}{0pt}(.333\paperwidth, 0pt)
-%     \color{solarizedbase1}\rule{.2pt}{\paperheight}
-%     \end{textblock*}
-%     % \begin{textblock*}{0pt}(.667\paperwidth - .167\gutter + .5\mycolsep, 0pt)
-%     \begin{textblock*}{0pt}(.667\paperwidth, 0pt)
-%     \color{solarizedbase1}\rule{.2pt}{\paperheight}
-%     \end{textblock*}
-%     \normalcolor
-% }
 
 \definecolor{shadecolor}{named}{solarizedbase3}
 
