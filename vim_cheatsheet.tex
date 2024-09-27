@@ -135,6 +135,8 @@
     Colour = solarizedbase01,
 ]{JetBrainsMono}
 
+\setcounter{secnumdepth}{0}
+
 \makeatletter
 \renewcommand{\section}{%
     \@startsection{section}%
@@ -142,14 +144,14 @@
         {0pt}%
         {-15pt}%
         {5pt}%
-        {\fontsize{14pt}{12pt}\fontseries{ub}\selectfont\color{accentcolor}}}
+        {\protect\makebox(0,0)[l]{\color{accentcolor!80}\rule[8pt]{\columnwidth}{19pt}}\hspace{.5em}\fontsize{14pt}{12pt}\fontseries{ub}\selectfont\color{white}}}
 \renewcommand{\subsection}{%
     \@startsection{subsection}%
         {2}%
         {0pt}%
         {-10pt}%
         {5pt}%
-        {\fontsize{12pt}{12pt}\selectfont\bfseries\itshape\color{accentcolor}}}
+        {\protect\makebox(0,0)[l]{\color{accentcolor!20}\rule[7pt]{\columnwidth}{19pt}}\hspace{.5em}\fontsize{12pt}{12pt}\selectfont\bfseries\itshape\color{accentcolor}}}
 \makeatother
 
 \setlength{\columnsep}{\mycolsep}
@@ -160,11 +162,6 @@
 
 \newcommand{\V}[1]{\texttt{\textup{#1}}}
 
-\newcommand{\topic}[1]{\section*{\protect\makebox(0,0)[l]{\color{accentcolor!80}\rule[8pt]{\columnwidth}{19pt}}\hspace{.5em}\color{white}#1}}
-% \newcommand{\topic}[1]{\section*{\protect\makebox(0,0)[l]{\color{accentcolor!20}\rule[9pt]{\columnwidth}{19pt}}\hspace{.5em}#1}}
-\newcommand{\subtopic}[1]{\subsection*{\protect\makebox(0,0)[l]{\color{accentcolor!20}\rule[7pt]{\columnwidth}{19pt}}\hspace{.5em}#1}}
-% \newcommand{\subtopic}[1]{\subsection*{\protect\makebox(0,0)[l]{\color{accentcolor!10}\rule[7pt]{\columnwidth}{15pt}}\hspace{.5em}#1}}
-
 \hypersetup{%
     pdftitle={Vim quick reference},
     pdfauthor={Marc Penninga},
@@ -172,6 +169,7 @@
     pdfkeywords={vim},
     pdfsubject={A quick reference for Vim},
     pdfcopyright={\copyright\ 2020–2024 Marc Penninga. Released under the terms of the CC-BY-SA 4.0 license, see https://creativecommons.org/licenses/by-sa/4.0/.},
+    bookmarksopen=true,
 }
 
 \title{\GetDocumentProperties{hyperref/pdftitle}}
@@ -200,7 +198,7 @@
 
 
 \definecolor{accentcolor}{named}{solarizedgreen}
-    \topic{Moving around}
+    \section{Moving around}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \V{gg}, \V{G}
         &Go to top/end of file (with prefix \textit{n:} go to line \textit{n})\\
@@ -221,7 +219,7 @@
         &Go to location of last/next change or jump
     \end{tabularx}
 
-\subtopic{Marks}
+\subsection{Marks}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \V{mx}
         &Set mark \V{x} (\V{a} – \V{z} per buffer, \V{A} – \V{Z} across buffers)\\
@@ -238,7 +236,7 @@
 
 
 \definecolor{accentcolor}{named}{solarizedcyan}
-\topic{Insert mode}
+\section{Insert mode}
 An optional prefixed count indicates how many characters or lines to insert or replace.
 \vspace{.25\baselineskip}
 
@@ -259,7 +257,7 @@ An optional prefixed count indicates how many characters or lines to insert or r
         &Return to Normal mode
     \end{tabularx}
 
-\subtopic{Insert mode commands}
+\subsection{Insert mode commands}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \verb|^d|, \verb|^t|
         &Shift left/right (by shiftwidth)\\
@@ -281,7 +279,7 @@ An optional prefixed count indicates how many characters or lines to insert or r
 
 
 \definecolor{accentcolor}{named}{solarizedblue}
-\topic{Text editing}
+\section{Text editing}
 General editing actions are of the form:
 
 {
@@ -295,7 +293,7 @@ As a shortcut, operators can be doubled to work on full lines:
 \V{cc}, \V{dd}, \V{yy}, \V{<{}<}, \V{>{}>}, \V{==}, \V{guu}, \V{gUU}, \verb|g~~| etc.
 Naming a specific register with operators \verb|d|, \verb|y|, \verb|p| yanks to or pastes from that register.
 
-\subtopic{Operators}
+\subsection{Operators}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \V{d}
         &Delete text\\
@@ -313,7 +311,7 @@ Naming a specific register with operators \verb|d|, \verb|y|, \verb|p| yanks to 
         &Format text; \V{gq} uses \V{formatexpr}/\V{formatprg}
     \end{tabularx}
 
-\subtopic{Motions}
+\subsection{Motions}
 Motions move the cursor when used without operator.
 \vspace{.25\baselineskip}
 
@@ -337,7 +335,7 @@ Motions move the cursor when used without operator.
         &Go to beginning of current/next paragraph
     \end{tabularx}
 
-\subtopic{Text objects}
+\subsection{Text objects}
 These \V{a}~commands include surrounding whitespace; alternative \V{i}~forms don't. As a general rule, use \V{a}~forms with delete,\\\V{i}~forms with copy and change (mnemonic: \emph{around} versus \emph{inside}).
 \vspace{.25\baselineskip}
 
@@ -350,7 +348,7 @@ These \V{a}~commands include surrounding whitespace; alternative \V{i}~forms don
         &Various strings; HTML/XML tag
     \end{tabularx}
 
-\subtopic{Visual mode}
+\subsection{Visual mode}
 Use motions, search, text objects or marks to select text.
 \vspace{.25\baselineskip}
 
@@ -359,7 +357,7 @@ Use motions, search, text objects or marks to select text.
         &Select characters/lines/block
     \end{tabularx}
 
-\subtopic{Search and replace}
+\subsection{Search and replace}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \V{fx}, \V{tx}, \V{Fx}, \V{Tx}
         &Find/move to next/previous \V{x} on current line\\
@@ -380,7 +378,7 @@ Use motions, search, text objects or marks to select text.
         &Change all \V{old} in current buffer to \V{new}
     \end{tabularx}
 
-\subtopic{Miscellaneous other editing commands}
+\subsection{Miscellaneous other editing commands}
 These command may also be prefixed with a count.
 \vspace{.25\baselineskip}
 
@@ -407,7 +405,7 @@ These command may also be prefixed with a count.
         &Increment/decrement number under cursor
     \end{tabularx}
 
-\subtopic{Repeat and undo}
+\subsection{Repeat and undo}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \verb|.|
         &Repeat last command\\
@@ -422,7 +420,7 @@ These command may also be prefixed with a count.
 
 
 \definecolor{accentcolor}{named}{solarizedviolet}
-\topic{Registers and macros}
+\section{Registers and macros}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \V{""}
         &``Unnamed'' (default) register\\
@@ -456,7 +454,7 @@ These command may also be prefixed with a count.
 
 
 \definecolor{accentcolor}{named}{solarizedmagenta}
-\topic{Editor commands}
+\section{Editor commands}
     \begin{tabularx}{\columnwidth}{l>{\raggedright\arraybackslash}X}
 \V{:h subject}
         &Show help text on \emph{subject}\\
@@ -495,7 +493,7 @@ These command may also be prefixed with a count.
         &Completion suggestions
     \end{tabularx}
 
-\subtopic{Windows and tabs}
+\subsection{Windows and tabs}
 In all commands below, \verb|^w x| may also be typed as \verb|^w^x|.
 \vspace{.25\baselineskip}
 
@@ -547,7 +545,7 @@ In all commands below, \verb|^w x| may also be typed as \verb|^w^x|.
 
 
 \definecolor{accentcolor}{named}{solarizedred}
-\topic{From my \textit{.vimrc}}
+\section{From my \textit{.vimrc}}
 \begin{verbatim}
  set nocompatible    " allow non-vi-compatible stuff
  set encoding=utf-8
@@ -597,7 +595,7 @@ tnoremap <Esc> <C-\><C-n>   " Terminal-Normal mode
 
 
 \definecolor{accentcolor}{named}{solarizedyellow}
-\topic{My favorite plugins}
+\section{My favorite plugins}
 Plugins go in subdirs of \verb|$HOME/.vim/pack/packages/start/|; run~\V{:helptags ALL} to generate help texts.
 \vspace{.5\baselineskip}
 
@@ -611,7 +609,7 @@ tmux-navigator.vim      &Switch between vim and tmux\\
 nord.vim                &My favourite dark color scheme
     \end{tabularx}
 
-\subtopic{\textit{surround.vim}}
+\subsection{\textit{surround.vim}}
     \begin{tabularx}{\columnwidth}{ll>{\raggedright\arraybackslash}X}
 \V{ys arg1 arg2}
         &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Quote or parenthesize something. \linebreak\V{arg1} is a motion, text object etc., \V{arg2}~chooses quotes/parens: \makebox[0pt][l]{\V{"} \V{]} \V{)} \V{\}} \V{>} \V{<}} \linebreak Args \V{[} \V{(} \V{\{} add space inside parens.}\\
@@ -640,7 +638,7 @@ nord.vim                &My favourite dark color scheme
     \end{tabularx}
 
 
-\subtopic{\textit{fugitive.vim}}
+\subsection{\textit{fugitive.vim}}
     \begin{tabularx}{\columnwidth}{ll>{\raggedright\arraybackslash}X}
 \V{:G}
         &\multicolumn{2}{>{\raggedright\arraybackslash}X}{Show Git status. Key maps (see also \V{g?}):}\\
