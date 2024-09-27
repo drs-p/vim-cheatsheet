@@ -135,6 +135,11 @@
     Colour = solarizedbase01,
 ]{JetBrainsMono}
 
+\newfontface\fabrandsfont{Font Awesome 6 Brands-Regular-400.otf}[
+    Scale = 1.4,
+    Path = /home/marc/Downloads/FONTS/Fontawesome/,
+]
+
 \setcounter{secnumdepth}{0}
 
 \makeatletter
@@ -170,6 +175,7 @@
     pdfsubject={A quick reference for Vim},
     pdfcopyright={\copyright\ 2020–2024 Marc Penninga. Released under the terms of the CC-BY-SA 4.0 license, see https://creativecommons.org/licenses/by-sa/4.0/.},
     bookmarksopen=true,
+    hidelinks=true,
 }
 
 \title{\GetDocumentProperties{hyperref/pdftitle}}
@@ -663,8 +669,8 @@ nord.vim                &My favourite dark color scheme
 
 
     {
-        \color{solarizedbase00}\vfill\hrule\par%
-        {\noindent\rule{0pt}{8pt}\footnotesize © 2020-2024 \href{https://github.com/drs-p/}{Marc Penninga}\hfill License: \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0}}\par
+        \color{solarizedbase00}\vfill\hrule\vspace*{2pt}\par%
+        {\noindent\rule{0pt}{8pt}\footnotesize Copyright 2020-2024 \href{https://github.com/drs-p/vim-cheatsheet}{Marc Penninga}\hfill License: \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0\hspace{4pt}\raisebox{-2pt}{\fabrandsfont creative-commons{}creative-commons-by{}creative-commons-sa}}}\par
     }
 
 \end{multicols*}
