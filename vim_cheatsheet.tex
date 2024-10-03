@@ -1,15 +1,6 @@
 \DocumentMetadata{
     lang        = {en-US},
-    pdfversion  = 2.0,
-    pdfstandard = ua-2,
-    pdfstandard = a-4f,
-    testphase   = {
-        phase-III,
-        title,
-        table,
-        % math,
-        firstaid
-    }
+    pdfstandard = a-3u,
 }
 
 \documentclass[a4paper, landscape, 10pt]{article}
@@ -17,59 +8,34 @@
 \setlength{\parskip}{0pt}\raggedbottom
 \raggedright
 
-\PassOptionsToPackage{babel}{main=english, math=normal, showlanguages}
-
 \usepackage{iftex}
 
 \ifluatex
     \pdfvariable omitcidset=1
 \fi
 
-\usepackage{babel}
-
 \usepackage{calc}
 \usepackage{geometry}
-% \PassOptionsToPackage{textpos}{absolute}
-% \usepackage{textpos}
 
 \usepackage{graphicx}
-% \usepackage{pdfpages}
-% \usepackage{svg}
 \PassOptionsToPackage{xcolor}{rgb,hyperref}
 \usepackage{xcolor}
 % \ifluatex
 %     \usepackage{luacolor}
 % \fi
 
-% \usepackage{alltt}
-% \usepackage{array}
-% \usepackage{booktabs}
-% \usepackage{caption}
-% \usepackage{enumitem}\setlist{nosep}
-% \usepackage{enumerate}
-% \usepackage{paralist}
-% \usepackage{fancyhdr}
-% \usepackage{float}
-% \usepackage{footmisc}
-% \usepackage{framed}
 \usepackage{multicol}
 \ifluatex
     \usepackage{realscripts}
 \fi
 \usepackage[toc,eqno,enum,bib,lineno]{tabfigures}
 \usepackage{tabularx}
-% \usepackage{titlesec}
-% \usepackage{tocloft}
 
-\usepackage[tbtags]{mathtools}
-\usepackage{amsthm}
-
-\usepackage{unicode-math}
+\usepackage{fontspec}
 \defaultfontfeatures{Renderer = OpenType}
 \usepackage{microtype}
 
 \usepackage{hyperref}
-\usepackage{cleveref}
 
 
 \newlength{\gutter}
@@ -101,42 +67,31 @@
 \definecolor{solarizedcyan}{HTML}{2aa198}
 \definecolor{solarizedgreen}{HTML}{859900}
 
-\babelfont{rm}[
+\setmainfont{SourceSans3}[
     Numbers = {Uppercase, Proportional},
     Scale = 0.9,
     ScaleAgain = 1.0,
-    Path = /home/marc/Downloads/FONTS/Adobe Source/variable/,
-    Extension = .ttf,
-    UprightFont = *VF,
-    UprightFeatures = { RawFeature = {axis={wght=400}} },
-    ItalicFont = *VF-Italic,
-    ItalicFeatures = { RawFeature = {axis={wght=400}} },
-    BoldFont = *VF,
-    BoldFeatures = { RawFeature = {axis={wght=700}} },
-    BoldItalicFont = *VF-Italic,
-    BoldItalicFeatures = { RawFeature = {axis={wght=700}} },
-    FontFace = {ub}{n}{Font = *VF, RawFeature = {axis={wght=900}}},
-    FontFace = {ub}{it}{Font = *VF-Italic, RawFeature = {axis={wght=900}}},
-]{SourceSans3}
+    Path = /home/marc/Downloads/FONTS/Adobe Source/,
+    Extension = .otf,
+    UprightFont = *-Regular,
+    ItalicFont = *-It,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldIt,
+]
 
-\babelfont{tt}[
+\setmonofont{JetBrainsMono}[
     Scale = MatchUppercase,
     ScaleAgain = 1.0,
-    Path = /home/marc/Downloads/FONTS/JetBrains Mono/variable/,
+    Path = /home/marc/Downloads/FONTS/JetBrains Mono/,
     Extension = .ttf,
-    UprightFont = *VF,
-    UprightFeatures = { RawFeature = {axis={wght=400}} },
-    ItalicFont = *VF-Italic,
-    ItalicFeatures = { RawFeature = {axis={wght=400}} },
-    BoldFont = *VF,
-    BoldFeatures = { RawFeature = {axis={wght=700}} },
-    BoldItalicFont = *VF-Italic,
-    BoldItalicFeatures = { RawFeature = {axis={wght=700}} },
+    UprightFont = *-Regular,
+    ItalicFont = *-Italic,
+    BoldFont = *-Bold,
+    BoldItalicFont = *-BoldItalic,
     Colour = solarizedbase01,
-]{JetBrainsMono}
+]
 
-\newfontface\fabrandsfont{Font Awesome 6 Brands-Regular-400.otf}[
-    Scale = 1.4,
+\newfontface\fabrands{Font Awesome 6 Brands-Regular-400.otf}[
     Path = /home/marc/Downloads/FONTS/Fontawesome/,
 ]
 
@@ -149,7 +104,7 @@
         {0pt}%
         {-15pt}%
         {5pt}%
-        {\protect\makebox(0,0)[l]{\color{accentcolor!80}\rule[8pt]{\columnwidth}{19pt}}\hspace{.5em}\fontsize{14pt}{12pt}\fontseries{ub}\selectfont\color{white}}}
+        {\protect\makebox(0,0)[l]{\color{accentcolor!80}\rule[8pt]{\columnwidth}{19pt}}\hspace{.5em}\fontsize{14pt}{12pt}\selectfont\bfseries\color{white}}}
 \renewcommand{\subsection}{%
     \@startsection{subsection}%
         {2}%
@@ -161,8 +116,6 @@
 
 \setlength{\columnsep}{\mycolsep}
 
-\definecolor{shadecolor}{named}{solarizedbase3}
-
 \pagestyle{empty}\thispagestyle{empty}
 
 \newcommand{\V}[1]{\texttt{\textup{#1}}}
@@ -170,7 +123,7 @@
 \hypersetup{%
     pdftitle={Vim quick reference},
     pdfauthor={Marc Penninga},
-    pdfdate={2024-06-05},
+    pdfdate={2024-10-03},
     pdfkeywords={vim},
     pdfsubject={A quick reference for Vim},
     pdfcopyright={\copyright\ 2020–2024 Marc Penninga. Released under the terms of the CC-BY-SA 4.0 license, see https://creativecommons.org/licenses/by-sa/4.0/.},
@@ -187,8 +140,7 @@
 \begin{multicols*}{3}
     {
         {
-            \fontseries{ub}\selectfont
-            \definecolor{shadecolor}{HTML}{ffffff}%
+            \bfseries
             \hspace{.02\columnwidth}%
             \resizebox{.94\columnwidth}{!}{%
                 \textcolor{solarizedbase01}%
@@ -670,7 +622,7 @@ nord.vim                &My favourite dark color scheme
 
     {
         \color{solarizedbase00}\vfill\hrule\vspace*{2pt}\par%
-        {\noindent\rule{0pt}{8pt}\footnotesize Copyright 2020-2024 \href{https://github.com/drs-p/vim-cheatsheet}{Marc Penninga}\hfill License: \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC-BY-SA 4.0\hspace{4pt}\raisebox{-2pt}{\fabrandsfont creative-commons{}creative-commons-by{}creative-commons-sa}}}\par
+        {\noindent\rule{0pt}{8pt}\footnotesize Copyright 2020--2024 \href{https://github.com/drs-p/vim-cheatsheet}{Marc Penninga}\hfill License: \href{https://creativecommons.org/licenses/by-sa/4.0/}{CC--BY--SA 4.0\hspace{4pt}\raisebox{-2pt}{\scalebox{1.4}{\fabrands creative-commons{}creative-commons-by{}creative-commons-sa}}}}\par
     }
 
 \end{multicols*}
